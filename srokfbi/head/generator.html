@@ -7,12 +7,8 @@
 <body>
 <script>
   // === 1. Получаем текст заголовка из URL ===
-  const path = window.location.pathname; // /srokfbi/head/текст/
-  const parts = path.split('/');
-  const headerText = decodeURIComponent(parts[parts.length - 1] || 'FEDERAL BUREAU OF INVESTIGATION');
-
-  // === 2. Логотип Base64 (вставь свой) ===
-  const logoBase64 = 'data:image/png;base64,...'; // сюда вставляешь Base64 логотипа
+  const urlParams = new URLSearchParams(window.location.search);
+  const headerText = urlParams.get('text') || 'FEDERAL BUREAU OF INVESTIGATION';
 
   // === 3. Формируем SVG ===
   const svg = `
