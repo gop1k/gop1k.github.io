@@ -1,13 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="300" viewBox="0 0 1100 300">
+<svg width="1100" height="300" viewBox="0 0 1100 300" xmlns="http://www.w3.org/2000/svg">
 
-<style><svg width="1100" height="300" viewBox="0 0 1100 300" xmlns="http://www.w3.org/2000/svg">
-
-<script><![CDATA[
-const params = new URLSearchParams(location.search);
-const text = params.get("title");
-if(text){
-document.getElementById("topic").textContent = decodeURIComponent(text);
+<script type="application/ecmascript"><![CDATA[
+function getParams() {
+  const params = {};
+  location.search.substring(1).split("&").forEach(function(pair){
+    const [key, value] = pair.split("=");
+    if(key) params[key] = decodeURIComponent(value);
+  });
+  return params;
 }
+const p = getParams();
+if(p.sub) document.getElementById("subText").textContent = p.sub;
 ]]></script>
 
 <style>
@@ -72,7 +75,7 @@ SPECIAL WEAPONS AND TACTICS
 </text>
 
 <text
-id="topic"
+id="subText"
 x="550"
 y="185"
 text-anchor="middle"
@@ -80,85 +83,4 @@ class="subtitle">
 Заявление на увольнение по собственному желанию
 </text>
 
-</svg>
-
-.main{
-font-family:Arial, Helvetica, sans-serif;
-font-size:46px;
-font-weight:700;
-letter-spacing:4px;
-fill:url(#silver);
-}
-
-.topic{
-font-family:Arial, Helvetica, sans-serif;
-font-size:24px;
-fill:#cfcfcf;
-}
-
-.line{
-stroke:url(#silver);
-stroke-width:2;
-opacity:0.6;
-}
-
-</style>
-
-<defs>
-
-<linearGradient id="silver" x1="-100%" y1="0%" x2="0%" y2="0%">
-
-<stop offset="0%" stop-color="#5a5a5a"/>
-<stop offset="25%" stop-color="#bfbfbf"/>
-<stop offset="50%" stop-color="#ffffff"/>
-<stop offset="75%" stop-color="#bfbfbf"/>
-<stop offset="100%" stop-color="#5a5a5a"/>
-
-<animate attributeName="x1" from="-100%" to="100%" dur="8s" repeatCount="indefinite"/>
-<animate attributeName="x2" from="0%" to="200%" dur="8s" repeatCount="indefinite"/>
-
-</linearGradient>
-
-</defs>
-
-<rect
-x="0"
-y="0"
-width="1100"
-height="300"
-fill="none"
-stroke="url(#silver)"
-stroke-width="4"/>
-
-<line x1="50" y1="90" x2="1050" y2="90" class="line"/>
-<line x1="50" y1="210" x2="1050" y2="210" class="line"/>
-
-<text
-x="550"
-y="150"
-text-anchor="middle"
-class="main">
-SPECIAL WEAPONS AND TACTICS
-</text>
-
-<text
-id="topic"
-x="550"
-y="190"
-text-anchor="middle"
-class="topic">
-TOPIC
-</text>
-
-<script><![CDATA[
-
-const params = new URLSearchParams(location.search);
-let title = params.get("title") || "TOPIC";
-
-title = decodeURIComponent(title);
-
-document.getElementById("topic").textContent = title;
-
-]]></script>
-  
 </svg>
