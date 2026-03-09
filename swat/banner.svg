@@ -12,7 +12,15 @@
 <text x="550" y="150" text-anchor="middle" class="title">SPECIAL WEAPONS AND TACTICS</text>
 <text id="subText" x="550" y="185" text-anchor="middle" class="subtitle">Заявление на увольнение по собственному желанию</text>
 <script type="application/ecmascript"><![CDATA[
-function getParams(){const params={};location.search.substring(1).split("&").forEach(function(pair){const [key,value]=pair.split("=");if(key)params[key]=decodeURIComponent(value);});return params;}
-const p=getParams();if(p.sub)document.getElementById("subText").textContent=p.sub;
-]]></script>
+    function getParams() {
+      const params = {};
+      location.search.substring(1).split("&").forEach(function(pair){
+        const [key, value] = pair.split("=");
+        if(key) params[key] = decodeURIComponent(value);
+      });
+      return params;
+    }
+    const p = getParams();
+    if(p.sub) document.getElementById("subText").textContent = p.sub;
+  ]]></script>
 </svg>
