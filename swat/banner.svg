@@ -1,26 +1,66 @@
 <svg width="1100" height="300" viewBox="0 0 1100 300" xmlns="http://www.w3.org/2000/svg">
-<style>.title{font-family:Arial,Helvetica,sans-serif;font-size:44px;font-weight:700;fill:url(#silver);letter-spacing:4px}.subtitle{font-family:Arial,Helvetica,sans-serif;font-size:22px;fill:#cfcfcf}.line{stroke:url(#silver);stroke-width:2;opacity:0.6}</style>
+
+<style>
+.title{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:44px;
+  font-weight:700;
+  fill:url(#silver);
+  letter-spacing:4px;
+}
+.subtitle{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:22px;
+  fill:#cfcfcf;
+}
+.line{
+  stroke:url(#silver);
+  stroke-width:2;
+  opacity:0.6;
+}
+</style>
+
 <defs>
 <linearGradient id="silver" x1="-100%" y1="0%" x2="0%" y2="0%">
-<stop offset="0%" stop-color="#5a5a5a"/><stop offset="25%" stop-color="#bfbfbf"/><stop offset="50%" stop-color="#ffffff"/><stop offset="75%" stop-color="#bfbfbf"/><stop offset="100%" stop-color="#5a5a5a"/>
-<animate attributeName="x1" from="-100%" to="100%" dur="8s" repeatCount="indefinite"/><animate attributeName="x2" from="0%" to="200%" dur="8s" repeatCount="indefinite"/>
+  <stop offset="0%" stop-color="#5a5a5a"/>
+  <stop offset="25%" stop-color="#bfbfbf"/>
+  <stop offset="50%" stop-color="#ffffff"/>
+  <stop offset="75%" stop-color="#bfbfbf"/>
+  <stop offset="100%" stop-color="#5a5a5a"/>
+  <animate attributeName="x1" from="-100%" to="100%" dur="8s" repeatCount="indefinite"/>
+  <animate attributeName="x2" from="0%" to="200%" dur="8s" repeatCount="indefinite"/>
 </linearGradient>
 </defs>
-<rect x="0" y="0" width="1100" height="300" fill="none" stroke="url(#silver)" stroke-width="4"/>
+
+<!-- Прозрачный фон -->
+<rect x="0" y="0" width="1100" height="300" fill="transparent" stroke="url(#silver)" stroke-width="4"/>
+
+<!-- Верхняя и нижняя линии -->
 <line x1="50" y1="80" x2="1050" y2="80" class="line"/>
 <line x1="50" y1="220" x2="1050" y2="220" class="line"/>
-<text x="550" y="150" text-anchor="middle" class="title">SPECIAL WEAPONS AND TACTICS</text>
-<text id="subText" x="550" y="185" text-anchor="middle" class="subtitle">Заявление на увольнение по собственному желанию</text>
+
+<!-- Название подразделения -->
+<text x="550" y="150" text-anchor="middle" class="title">
+SPECIAL WEAPONS AND TACTICS
+</text>
+
+<!-- Подзаголовок (текст через URL) -->
+<text id="subText" x="550" y="185" text-anchor="middle" class="subtitle">
+Заявление на увольнение
+</text>
+
 <script type="application/ecmascript"><![CDATA[
-    function getParams() {
-      const params = {};
-      location.search.substring(1).split("&").forEach(function(pair){
-        const [key, value] = pair.split("=");
-        if(key) params[key] = decodeURIComponent(value);
-      });
-      return params;
-    }
-    const p = getParams();
-    if(p.sub) document.getElementById("subText").textContent = p.sub;
-  ]]></script>
+(function(){
+  const params = {};
+  location.search.substring(1).split("&").forEach(function(pair){
+    const [key,value] = pair.split("=");
+    if(key) params[key] = decodeURIComponent(value.replace(/\+/g,' '));
+  });
+  if(params.sub){
+    const t = document.getElementById("subText");
+    if(t) t.textContent = params.sub;
+  }
+})();
+]]></script>
+
 </svg>
